@@ -1,0 +1,1533 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    ADD
+    AND
+    BEGIN
+    COMA
+    CONTINUEDOWN
+    CONTINUELEFT
+    CONTINUERIGHT
+    CONTINUEUP
+    DEF
+    DOWN
+    EQUAL
+    FIN
+    GREATER
+    IFELSE
+    MULT
+    OR
+    PARA
+    POS
+    POSX
+    POSY
+    RANDOM
+    REPEAT
+    RUN
+    SMALLER
+    SPEED
+    SUBSTR
+    UNTIL
+    USECOLOR
+
+Grammar
+
+Rule 0     S' -> init
+Rule 1     init -> instrucciones
+Rule 2     instrucciones -> instrucciones instruccion
+Rule 3     instrucciones -> instruccion
+Rule 4     instruccion -> asignacion_instr
+Rule 5     instruccion -> if_instr
+Rule 6     instruccion -> while_instr
+Rule 7     if_instr -> IF expresion_logica RPAREN statement RPAREN
+Rule 8     statement -> if_instr
+Rule 9     statement -> expresion
+Rule 10    statement -> while_instr
+Rule 11    while_instr -> WHILE LPARENC expresion_logica RPARENC LPARENC statement RPARENC
+Rule 12    asignacion_instr -> PUT ID ASSIGN expresion PUNTOCOMA
+Rule 13    expresion -> ENTERO
+Rule 14    expresion -> DECIMAL
+Rule 15    expresion -> CADENA
+Rule 16    expresion -> ID
+Rule 17    expresion -> LPAREN expresion RPAREN
+Rule 18    expresion_logica -> expresion MENOR expresion
+Rule 19    expresion_logica -> expresion MAYOR expresion
+Rule 20    expresion_logica -> expresion IGUAL expresion
+Rule 21    expresion_logica -> expresion DIFERENTE expresion
+Rule 22    expresion_logica -> expresion MAYORIGUAL expresion
+Rule 23    expresion_logica -> expresion MENORIGUAL expresion
+Rule 24    expresion_logica -> LPAREN expresion_logica RPAREN MENOR LPAREN expresion_logica RPAREN
+Rule 25    expresion_logica -> LPAREN expresion_logica RPAREN MAYOR LPAREN expresion_logica RPAREN
+Rule 26    expresion_logica -> LPAREN expresion_logica RPAREN IGUAL LPAREN expresion_logica RPAREN
+Rule 27    expresion_logica -> LPAREN expresion_logica RPAREN DIFERENTE LPAREN expresion_logica RPAREN
+Rule 28    expresion_logica -> LPAREN expresion_logica RPAREN MAYORIGUAL LPAREN expresion_logica RPAREN
+Rule 29    expresion_logica -> LPAREN expresion_logica RPAREN MENORIGUAL LPAREN expresion_logica RPAREN
+Rule 30    expresion -> expresion SUMA expresion
+Rule 31    expresion -> expresion RESTA expresion
+Rule 32    expresion -> expresion MULTI expresion
+Rule 33    expresion -> expresion DIV expresion
+
+Terminals, with rules where they appear
+
+ADD                  : 
+AND                  : 
+ASSIGN               : 12
+BEGIN                : 
+CADENA               : 15
+COMA                 : 
+CONTINUEDOWN         : 
+CONTINUELEFT         : 
+CONTINUERIGHT        : 
+CONTINUEUP           : 
+DECIMAL              : 14
+DEF                  : 
+DIFERENTE            : 21 27
+DIV                  : 33
+DOWN                 : 
+ENTERO               : 13
+EQUAL                : 
+FIN                  : 
+GREATER              : 
+ID                   : 12 16
+IF                   : 7
+IFELSE               : 
+IGUAL                : 20 26
+LPAREN               : 17 24 24 25 25 26 26 27 27 28 28 29 29
+LPARENC              : 11 11
+MAYOR                : 19 25
+MAYORIGUAL           : 22 28
+MENOR                : 18 24
+MENORIGUAL           : 23 29
+MULT                 : 
+MULTI                : 32
+OR                   : 
+PARA                 : 
+POS                  : 
+POSX                 : 
+POSY                 : 
+PUNTOCOMA            : 12
+PUT                  : 12
+RANDOM               : 
+REPEAT               : 
+RESTA                : 31
+RPAREN               : 7 7 17 24 24 25 25 26 26 27 27 28 28 29 29
+RPARENC              : 11 11
+RUN                  : 
+SMALLER              : 
+SPEED                : 
+SUBSTR               : 
+SUMA                 : 30
+UNTIL                : 
+USECOLOR             : 
+WHILE                : 11
+error                : 
+
+Nonterminals, with rules where they appear
+
+asignacion_instr     : 4
+expresion            : 9 12 17 18 18 19 19 20 20 21 21 22 22 23 23 30 30 31 31 32 32 33 33
+expresion_logica     : 7 11 24 24 25 25 26 26 27 27 28 28 29 29
+if_instr             : 5 8
+init                 : 0
+instruccion          : 2 3
+instrucciones        : 1 2
+statement            : 7 11
+while_instr          : 6 10
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . init
+    (1) init -> . instrucciones
+    (2) instrucciones -> . instrucciones instruccion
+    (3) instrucciones -> . instruccion
+    (4) instruccion -> . asignacion_instr
+    (5) instruccion -> . if_instr
+    (6) instruccion -> . while_instr
+    (12) asignacion_instr -> . PUT ID ASSIGN expresion PUNTOCOMA
+    (7) if_instr -> . IF expresion_logica RPAREN statement RPAREN
+    (11) while_instr -> . WHILE LPARENC expresion_logica RPARENC LPARENC statement RPARENC
+
+    PUT             shift and go to state 7
+    IF              shift and go to state 8
+    WHILE           shift and go to state 9
+
+    init                           shift and go to state 1
+    instrucciones                  shift and go to state 2
+    instruccion                    shift and go to state 3
+    asignacion_instr               shift and go to state 4
+    if_instr                       shift and go to state 5
+    while_instr                    shift and go to state 6
+
+state 1
+
+    (0) S' -> init .
+
+
+
+state 2
+
+    (1) init -> instrucciones .
+    (2) instrucciones -> instrucciones . instruccion
+    (4) instruccion -> . asignacion_instr
+    (5) instruccion -> . if_instr
+    (6) instruccion -> . while_instr
+    (12) asignacion_instr -> . PUT ID ASSIGN expresion PUNTOCOMA
+    (7) if_instr -> . IF expresion_logica RPAREN statement RPAREN
+    (11) while_instr -> . WHILE LPARENC expresion_logica RPARENC LPARENC statement RPARENC
+
+    $end            reduce using rule 1 (init -> instrucciones .)
+    PUT             shift and go to state 7
+    IF              shift and go to state 8
+    WHILE           shift and go to state 9
+
+    instruccion                    shift and go to state 10
+    asignacion_instr               shift and go to state 4
+    if_instr                       shift and go to state 5
+    while_instr                    shift and go to state 6
+
+state 3
+
+    (3) instrucciones -> instruccion .
+
+    PUT             reduce using rule 3 (instrucciones -> instruccion .)
+    IF              reduce using rule 3 (instrucciones -> instruccion .)
+    WHILE           reduce using rule 3 (instrucciones -> instruccion .)
+    $end            reduce using rule 3 (instrucciones -> instruccion .)
+
+
+state 4
+
+    (4) instruccion -> asignacion_instr .
+
+    PUT             reduce using rule 4 (instruccion -> asignacion_instr .)
+    IF              reduce using rule 4 (instruccion -> asignacion_instr .)
+    WHILE           reduce using rule 4 (instruccion -> asignacion_instr .)
+    $end            reduce using rule 4 (instruccion -> asignacion_instr .)
+
+
+state 5
+
+    (5) instruccion -> if_instr .
+
+    PUT             reduce using rule 5 (instruccion -> if_instr .)
+    IF              reduce using rule 5 (instruccion -> if_instr .)
+    WHILE           reduce using rule 5 (instruccion -> if_instr .)
+    $end            reduce using rule 5 (instruccion -> if_instr .)
+
+
+state 6
+
+    (6) instruccion -> while_instr .
+
+    PUT             reduce using rule 6 (instruccion -> while_instr .)
+    IF              reduce using rule 6 (instruccion -> while_instr .)
+    WHILE           reduce using rule 6 (instruccion -> while_instr .)
+    $end            reduce using rule 6 (instruccion -> while_instr .)
+
+
+state 7
+
+    (12) asignacion_instr -> PUT . ID ASSIGN expresion PUNTOCOMA
+
+    ID              shift and go to state 11
+
+
+state 8
+
+    (7) if_instr -> IF . expresion_logica RPAREN statement RPAREN
+    (18) expresion_logica -> . expresion MENOR expresion
+    (19) expresion_logica -> . expresion MAYOR expresion
+    (20) expresion_logica -> . expresion IGUAL expresion
+    (21) expresion_logica -> . expresion DIFERENTE expresion
+    (22) expresion_logica -> . expresion MAYORIGUAL expresion
+    (23) expresion_logica -> . expresion MENORIGUAL expresion
+    (24) expresion_logica -> . LPAREN expresion_logica RPAREN MENOR LPAREN expresion_logica RPAREN
+    (25) expresion_logica -> . LPAREN expresion_logica RPAREN MAYOR LPAREN expresion_logica RPAREN
+    (26) expresion_logica -> . LPAREN expresion_logica RPAREN IGUAL LPAREN expresion_logica RPAREN
+    (27) expresion_logica -> . LPAREN expresion_logica RPAREN DIFERENTE LPAREN expresion_logica RPAREN
+    (28) expresion_logica -> . LPAREN expresion_logica RPAREN MAYORIGUAL LPAREN expresion_logica RPAREN
+    (29) expresion_logica -> . LPAREN expresion_logica RPAREN MENORIGUAL LPAREN expresion_logica RPAREN
+    (13) expresion -> . ENTERO
+    (14) expresion -> . DECIMAL
+    (15) expresion -> . CADENA
+    (16) expresion -> . ID
+    (17) expresion -> . LPAREN expresion RPAREN
+    (30) expresion -> . expresion SUMA expresion
+    (31) expresion -> . expresion RESTA expresion
+    (32) expresion -> . expresion MULTI expresion
+    (33) expresion -> . expresion DIV expresion
+
+    LPAREN          shift and go to state 14
+    ENTERO          shift and go to state 15
+    DECIMAL         shift and go to state 16
+    CADENA          shift and go to state 17
+    ID              shift and go to state 18
+
+    expresion_logica               shift and go to state 12
+    expresion                      shift and go to state 13
+
+state 9
+
+    (11) while_instr -> WHILE . LPARENC expresion_logica RPARENC LPARENC statement RPARENC
+
+    LPARENC         shift and go to state 19
+
+
+state 10
+
+    (2) instrucciones -> instrucciones instruccion .
+
+    PUT             reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+    IF              reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+    WHILE           reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+    $end            reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+
+
+state 11
+
+    (12) asignacion_instr -> PUT ID . ASSIGN expresion PUNTOCOMA
+
+    ASSIGN          shift and go to state 20
+
+
+state 12
+
+    (7) if_instr -> IF expresion_logica . RPAREN statement RPAREN
+
+    RPAREN          shift and go to state 21
+
+
+state 13
+
+    (18) expresion_logica -> expresion . MENOR expresion
+    (19) expresion_logica -> expresion . MAYOR expresion
+    (20) expresion_logica -> expresion . IGUAL expresion
+    (21) expresion_logica -> expresion . DIFERENTE expresion
+    (22) expresion_logica -> expresion . MAYORIGUAL expresion
+    (23) expresion_logica -> expresion . MENORIGUAL expresion
+    (30) expresion -> expresion . SUMA expresion
+    (31) expresion -> expresion . RESTA expresion
+    (32) expresion -> expresion . MULTI expresion
+    (33) expresion -> expresion . DIV expresion
+
+    MENOR           shift and go to state 22
+    MAYOR           shift and go to state 23
+    IGUAL           shift and go to state 24
+    DIFERENTE       shift and go to state 25
+    MAYORIGUAL      shift and go to state 26
+    MENORIGUAL      shift and go to state 27
+    SUMA            shift and go to state 28
+    RESTA           shift and go to state 29
+    MULTI           shift and go to state 30
+    DIV             shift and go to state 31
+
+
+state 14
+
+    (24) expresion_logica -> LPAREN . expresion_logica RPAREN MENOR LPAREN expresion_logica RPAREN
+    (25) expresion_logica -> LPAREN . expresion_logica RPAREN MAYOR LPAREN expresion_logica RPAREN
+    (26) expresion_logica -> LPAREN . expresion_logica RPAREN IGUAL LPAREN expresion_logica RPAREN
+    (27) expresion_logica -> LPAREN . expresion_logica RPAREN DIFERENTE LPAREN expresion_logica RPAREN
+    (28) expresion_logica -> LPAREN . expresion_logica RPAREN MAYORIGUAL LPAREN expresion_logica RPAREN
+    (29) expresion_logica -> LPAREN . expresion_logica RPAREN MENORIGUAL LPAREN expresion_logica RPAREN
+    (17) expresion -> LPAREN . expresion RPAREN
+    (18) expresion_logica -> . expresion MENOR expresion
+    (19) expresion_logica -> . expresion MAYOR expresion
+    (20) expresion_logica -> . expresion IGUAL expresion
+    (21) expresion_logica -> . expresion DIFERENTE expresion
+    (22) expresion_logica -> . expresion MAYORIGUAL expresion
+    (23) expresion_logica -> . expresion MENORIGUAL expresion
+    (24) expresion_logica -> . LPAREN expresion_logica RPAREN MENOR LPAREN expresion_logica RPAREN
+    (25) expresion_logica -> . LPAREN expresion_logica RPAREN MAYOR LPAREN expresion_logica RPAREN
+    (26) expresion_logica -> . LPAREN expresion_logica RPAREN IGUAL LPAREN expresion_logica RPAREN
+    (27) expresion_logica -> . LPAREN expresion_logica RPAREN DIFERENTE LPAREN expresion_logica RPAREN
+    (28) expresion_logica -> . LPAREN expresion_logica RPAREN MAYORIGUAL LPAREN expresion_logica RPAREN
+    (29) expresion_logica -> . LPAREN expresion_logica RPAREN MENORIGUAL LPAREN expresion_logica RPAREN
+    (13) expresion -> . ENTERO
+    (14) expresion -> . DECIMAL
+    (15) expresion -> . CADENA
+    (16) expresion -> . ID
+    (17) expresion -> . LPAREN expresion RPAREN
+    (30) expresion -> . expresion SUMA expresion
+    (31) expresion -> . expresion RESTA expresion
+    (32) expresion -> . expresion MULTI expresion
+    (33) expresion -> . expresion DIV expresion
+
+    LPAREN          shift and go to state 14
+    ENTERO          shift and go to state 15
+    DECIMAL         shift and go to state 16
+    CADENA          shift and go to state 17
+    ID              shift and go to state 18
+
+    expresion_logica               shift and go to state 32
+    expresion                      shift and go to state 33
+
+state 15
+
+    (13) expresion -> ENTERO .
+
+    MENOR           reduce using rule 13 (expresion -> ENTERO .)
+    MAYOR           reduce using rule 13 (expresion -> ENTERO .)
+    IGUAL           reduce using rule 13 (expresion -> ENTERO .)
+    DIFERENTE       reduce using rule 13 (expresion -> ENTERO .)
+    MAYORIGUAL      reduce using rule 13 (expresion -> ENTERO .)
+    MENORIGUAL      reduce using rule 13 (expresion -> ENTERO .)
+    SUMA            reduce using rule 13 (expresion -> ENTERO .)
+    RESTA           reduce using rule 13 (expresion -> ENTERO .)
+    MULTI           reduce using rule 13 (expresion -> ENTERO .)
+    DIV             reduce using rule 13 (expresion -> ENTERO .)
+    RPAREN          reduce using rule 13 (expresion -> ENTERO .)
+    PUNTOCOMA       reduce using rule 13 (expresion -> ENTERO .)
+    RPARENC         reduce using rule 13 (expresion -> ENTERO .)
+
+
+state 16
+
+    (14) expresion -> DECIMAL .
+
+    MENOR           reduce using rule 14 (expresion -> DECIMAL .)
+    MAYOR           reduce using rule 14 (expresion -> DECIMAL .)
+    IGUAL           reduce using rule 14 (expresion -> DECIMAL .)
+    DIFERENTE       reduce using rule 14 (expresion -> DECIMAL .)
+    MAYORIGUAL      reduce using rule 14 (expresion -> DECIMAL .)
+    MENORIGUAL      reduce using rule 14 (expresion -> DECIMAL .)
+    SUMA            reduce using rule 14 (expresion -> DECIMAL .)
+    RESTA           reduce using rule 14 (expresion -> DECIMAL .)
+    MULTI           reduce using rule 14 (expresion -> DECIMAL .)
+    DIV             reduce using rule 14 (expresion -> DECIMAL .)
+    RPAREN          reduce using rule 14 (expresion -> DECIMAL .)
+    PUNTOCOMA       reduce using rule 14 (expresion -> DECIMAL .)
+    RPARENC         reduce using rule 14 (expresion -> DECIMAL .)
+
+
+state 17
+
+    (15) expresion -> CADENA .
+
+    MENOR           reduce using rule 15 (expresion -> CADENA .)
+    MAYOR           reduce using rule 15 (expresion -> CADENA .)
+    IGUAL           reduce using rule 15 (expresion -> CADENA .)
+    DIFERENTE       reduce using rule 15 (expresion -> CADENA .)
+    MAYORIGUAL      reduce using rule 15 (expresion -> CADENA .)
+    MENORIGUAL      reduce using rule 15 (expresion -> CADENA .)
+    SUMA            reduce using rule 15 (expresion -> CADENA .)
+    RESTA           reduce using rule 15 (expresion -> CADENA .)
+    MULTI           reduce using rule 15 (expresion -> CADENA .)
+    DIV             reduce using rule 15 (expresion -> CADENA .)
+    RPAREN          reduce using rule 15 (expresion -> CADENA .)
+    PUNTOCOMA       reduce using rule 15 (expresion -> CADENA .)
+    RPARENC         reduce using rule 15 (expresion -> CADENA .)
+
+
+state 18
+
+    (16) expresion -> ID .
+
+    MENOR           reduce using rule 16 (expresion -> ID .)
+    MAYOR           reduce using rule 16 (expresion -> ID .)
+    IGUAL           reduce using rule 16 (expresion -> ID .)
+    DIFERENTE       reduce using rule 16 (expresion -> ID .)
+    MAYORIGUAL      reduce using rule 16 (expresion -> ID .)
+    MENORIGUAL      reduce using rule 16 (expresion -> ID .)
+    SUMA            reduce using rule 16 (expresion -> ID .)
+    RESTA           reduce using rule 16 (expresion -> ID .)
+    MULTI           reduce using rule 16 (expresion -> ID .)
+    DIV             reduce using rule 16 (expresion -> ID .)
+    RPAREN          reduce using rule 16 (expresion -> ID .)
+    PUNTOCOMA       reduce using rule 16 (expresion -> ID .)
+    RPARENC         reduce using rule 16 (expresion -> ID .)
+
+
+state 19
+
+    (11) while_instr -> WHILE LPARENC . expresion_logica RPARENC LPARENC statement RPARENC
+    (18) expresion_logica -> . expresion MENOR expresion
+    (19) expresion_logica -> . expresion MAYOR expresion
+    (20) expresion_logica -> . expresion IGUAL expresion
+    (21) expresion_logica -> . expresion DIFERENTE expresion
+    (22) expresion_logica -> . expresion MAYORIGUAL expresion
+    (23) expresion_logica -> . expresion MENORIGUAL expresion
+    (24) expresion_logica -> . LPAREN expresion_logica RPAREN MENOR LPAREN expresion_logica RPAREN
+    (25) expresion_logica -> . LPAREN expresion_logica RPAREN MAYOR LPAREN expresion_logica RPAREN
+    (26) expresion_logica -> . LPAREN expresion_logica RPAREN IGUAL LPAREN expresion_logica RPAREN
+    (27) expresion_logica -> . LPAREN expresion_logica RPAREN DIFERENTE LPAREN expresion_logica RPAREN
+    (28) expresion_logica -> . LPAREN expresion_logica RPAREN MAYORIGUAL LPAREN expresion_logica RPAREN
+    (29) expresion_logica -> . LPAREN expresion_logica RPAREN MENORIGUAL LPAREN expresion_logica RPAREN
+    (13) expresion -> . ENTERO
+    (14) expresion -> . DECIMAL
+    (15) expresion -> . CADENA
+    (16) expresion -> . ID
+    (17) expresion -> . LPAREN expresion RPAREN
+    (30) expresion -> . expresion SUMA expresion
+    (31) expresion -> . expresion RESTA expresion
+    (32) expresion -> . expresion MULTI expresion
+    (33) expresion -> . expresion DIV expresion
+
+    LPAREN          shift and go to state 14
+    ENTERO          shift and go to state 15
+    DECIMAL         shift and go to state 16
+    CADENA          shift and go to state 17
+    ID              shift and go to state 18
+
+    expresion_logica               shift and go to state 34
+    expresion                      shift and go to state 13
+
+state 20
+
+    (12) asignacion_instr -> PUT ID ASSIGN . expresion PUNTOCOMA
+    (13) expresion -> . ENTERO
+    (14) expresion -> . DECIMAL
+    (15) expresion -> . CADENA
+    (16) expresion -> . ID
+    (17) expresion -> . LPAREN expresion RPAREN
+    (30) expresion -> . expresion SUMA expresion
+    (31) expresion -> . expresion RESTA expresion
+    (32) expresion -> . expresion MULTI expresion
+    (33) expresion -> . expresion DIV expresion
+
+    ENTERO          shift and go to state 15
+    DECIMAL         shift and go to state 16
+    CADENA          shift and go to state 17
+    ID              shift and go to state 18
+    LPAREN          shift and go to state 36
+
+    expresion                      shift and go to state 35
+
+state 21
+
+    (7) if_instr -> IF expresion_logica RPAREN . statement RPAREN
+    (8) statement -> . if_instr
+    (9) statement -> . expresion
+    (10) statement -> . while_instr
+    (7) if_instr -> . IF expresion_logica RPAREN statement RPAREN
+    (13) expresion -> . ENTERO
+    (14) expresion -> . DECIMAL
+    (15) expresion -> . CADENA
+    (16) expresion -> . ID
+    (17) expresion -> . LPAREN expresion RPAREN
+    (30) expresion -> . expresion SUMA expresion
+    (31) expresion -> . expresion RESTA expresion
+    (32) expresion -> . expresion MULTI expresion
+    (33) expresion -> . expresion DIV expresion
+    (11) while_instr -> . WHILE LPARENC expresion_logica RPARENC LPARENC statement RPARENC
+
+    IF              shift and go to state 8
+    ENTERO          shift and go to state 15
+    DECIMAL         shift and go to state 16
+    CADENA          shift and go to state 17
+    ID              shift and go to state 18
+    LPAREN          shift and go to state 36
+    WHILE           shift and go to state 9
+
+    statement                      shift and go to state 37
+    if_instr                       shift and go to state 38
+    expresion                      shift and go to state 39
+    while_instr                    shift and go to state 40
+
+state 22
+
+    (18) expresion_logica -> expresion MENOR . expresion
+    (13) expresion -> . ENTERO
+    (14) expresion -> . DECIMAL
+    (15) expresion -> . CADENA
+    (16) expresion -> . ID
+    (17) expresion -> . LPAREN expresion RPAREN
+    (30) expresion -> . expresion SUMA expresion
+    (31) expresion -> . expresion RESTA expresion
+    (32) expresion -> . expresion MULTI expresion
+    (33) expresion -> . expresion DIV expresion
+
+    ENTERO          shift and go to state 15
+    DECIMAL         shift and go to state 16
+    CADENA          shift and go to state 17
+    ID              shift and go to state 18
+    LPAREN          shift and go to state 36
+
+    expresion                      shift and go to state 41
+
+state 23
+
+    (19) expresion_logica -> expresion MAYOR . expresion
+    (13) expresion -> . ENTERO
+    (14) expresion -> . DECIMAL
+    (15) expresion -> . CADENA
+    (16) expresion -> . ID
+    (17) expresion -> . LPAREN expresion RPAREN
+    (30) expresion -> . expresion SUMA expresion
+    (31) expresion -> . expresion RESTA expresion
+    (32) expresion -> . expresion MULTI expresion
+    (33) expresion -> . expresion DIV expresion
+
+    ENTERO          shift and go to state 15
+    DECIMAL         shift and go to state 16
+    CADENA          shift and go to state 17
+    ID              shift and go to state 18
+    LPAREN          shift and go to state 36
+
+    expresion                      shift and go to state 42
+
+state 24
+
+    (20) expresion_logica -> expresion IGUAL . expresion
+    (13) expresion -> . ENTERO
+    (14) expresion -> . DECIMAL
+    (15) expresion -> . CADENA
+    (16) expresion -> . ID
+    (17) expresion -> . LPAREN expresion RPAREN
+    (30) expresion -> . expresion SUMA expresion
+    (31) expresion -> . expresion RESTA expresion
+    (32) expresion -> . expresion MULTI expresion
+    (33) expresion -> . expresion DIV expresion
+
+    ENTERO          shift and go to state 15
+    DECIMAL         shift and go to state 16
+    CADENA          shift and go to state 17
+    ID              shift and go to state 18
+    LPAREN          shift and go to state 36
+
+    expresion                      shift and go to state 43
+
+state 25
+
+    (21) expresion_logica -> expresion DIFERENTE . expresion
+    (13) expresion -> . ENTERO
+    (14) expresion -> . DECIMAL
+    (15) expresion -> . CADENA
+    (16) expresion -> . ID
+    (17) expresion -> . LPAREN expresion RPAREN
+    (30) expresion -> . expresion SUMA expresion
+    (31) expresion -> . expresion RESTA expresion
+    (32) expresion -> . expresion MULTI expresion
+    (33) expresion -> . expresion DIV expresion
+
+    ENTERO          shift and go to state 15
+    DECIMAL         shift and go to state 16
+    CADENA          shift and go to state 17
+    ID              shift and go to state 18
+    LPAREN          shift and go to state 36
+
+    expresion                      shift and go to state 44
+
+state 26
+
+    (22) expresion_logica -> expresion MAYORIGUAL . expresion
+    (13) expresion -> . ENTERO
+    (14) expresion -> . DECIMAL
+    (15) expresion -> . CADENA
+    (16) expresion -> . ID
+    (17) expresion -> . LPAREN expresion RPAREN
+    (30) expresion -> . expresion SUMA expresion
+    (31) expresion -> . expresion RESTA expresion
+    (32) expresion -> . expresion MULTI expresion
+    (33) expresion -> . expresion DIV expresion
+
+    ENTERO          shift and go to state 15
+    DECIMAL         shift and go to state 16
+    CADENA          shift and go to state 17
+    ID              shift and go to state 18
+    LPAREN          shift and go to state 36
+
+    expresion                      shift and go to state 45
+
+state 27
+
+    (23) expresion_logica -> expresion MENORIGUAL . expresion
+    (13) expresion -> . ENTERO
+    (14) expresion -> . DECIMAL
+    (15) expresion -> . CADENA
+    (16) expresion -> . ID
+    (17) expresion -> . LPAREN expresion RPAREN
+    (30) expresion -> . expresion SUMA expresion
+    (31) expresion -> . expresion RESTA expresion
+    (32) expresion -> . expresion MULTI expresion
+    (33) expresion -> . expresion DIV expresion
+
+    ENTERO          shift and go to state 15
+    DECIMAL         shift and go to state 16
+    CADENA          shift and go to state 17
+    ID              shift and go to state 18
+    LPAREN          shift and go to state 36
+
+    expresion                      shift and go to state 46
+
+state 28
+
+    (30) expresion -> expresion SUMA . expresion
+    (13) expresion -> . ENTERO
+    (14) expresion -> . DECIMAL
+    (15) expresion -> . CADENA
+    (16) expresion -> . ID
+    (17) expresion -> . LPAREN expresion RPAREN
+    (30) expresion -> . expresion SUMA expresion
+    (31) expresion -> . expresion RESTA expresion
+    (32) expresion -> . expresion MULTI expresion
+    (33) expresion -> . expresion DIV expresion
+
+    ENTERO          shift and go to state 15
+    DECIMAL         shift and go to state 16
+    CADENA          shift and go to state 17
+    ID              shift and go to state 18
+    LPAREN          shift and go to state 36
+
+    expresion                      shift and go to state 47
+
+state 29
+
+    (31) expresion -> expresion RESTA . expresion
+    (13) expresion -> . ENTERO
+    (14) expresion -> . DECIMAL
+    (15) expresion -> . CADENA
+    (16) expresion -> . ID
+    (17) expresion -> . LPAREN expresion RPAREN
+    (30) expresion -> . expresion SUMA expresion
+    (31) expresion -> . expresion RESTA expresion
+    (32) expresion -> . expresion MULTI expresion
+    (33) expresion -> . expresion DIV expresion
+
+    ENTERO          shift and go to state 15
+    DECIMAL         shift and go to state 16
+    CADENA          shift and go to state 17
+    ID              shift and go to state 18
+    LPAREN          shift and go to state 36
+
+    expresion                      shift and go to state 48
+
+state 30
+
+    (32) expresion -> expresion MULTI . expresion
+    (13) expresion -> . ENTERO
+    (14) expresion -> . DECIMAL
+    (15) expresion -> . CADENA
+    (16) expresion -> . ID
+    (17) expresion -> . LPAREN expresion RPAREN
+    (30) expresion -> . expresion SUMA expresion
+    (31) expresion -> . expresion RESTA expresion
+    (32) expresion -> . expresion MULTI expresion
+    (33) expresion -> . expresion DIV expresion
+
+    ENTERO          shift and go to state 15
+    DECIMAL         shift and go to state 16
+    CADENA          shift and go to state 17
+    ID              shift and go to state 18
+    LPAREN          shift and go to state 36
+
+    expresion                      shift and go to state 49
+
+state 31
+
+    (33) expresion -> expresion DIV . expresion
+    (13) expresion -> . ENTERO
+    (14) expresion -> . DECIMAL
+    (15) expresion -> . CADENA
+    (16) expresion -> . ID
+    (17) expresion -> . LPAREN expresion RPAREN
+    (30) expresion -> . expresion SUMA expresion
+    (31) expresion -> . expresion RESTA expresion
+    (32) expresion -> . expresion MULTI expresion
+    (33) expresion -> . expresion DIV expresion
+
+    ENTERO          shift and go to state 15
+    DECIMAL         shift and go to state 16
+    CADENA          shift and go to state 17
+    ID              shift and go to state 18
+    LPAREN          shift and go to state 36
+
+    expresion                      shift and go to state 50
+
+state 32
+
+    (24) expresion_logica -> LPAREN expresion_logica . RPAREN MENOR LPAREN expresion_logica RPAREN
+    (25) expresion_logica -> LPAREN expresion_logica . RPAREN MAYOR LPAREN expresion_logica RPAREN
+    (26) expresion_logica -> LPAREN expresion_logica . RPAREN IGUAL LPAREN expresion_logica RPAREN
+    (27) expresion_logica -> LPAREN expresion_logica . RPAREN DIFERENTE LPAREN expresion_logica RPAREN
+    (28) expresion_logica -> LPAREN expresion_logica . RPAREN MAYORIGUAL LPAREN expresion_logica RPAREN
+    (29) expresion_logica -> LPAREN expresion_logica . RPAREN MENORIGUAL LPAREN expresion_logica RPAREN
+
+    RPAREN          shift and go to state 51
+
+
+state 33
+
+    (17) expresion -> LPAREN expresion . RPAREN
+    (18) expresion_logica -> expresion . MENOR expresion
+    (19) expresion_logica -> expresion . MAYOR expresion
+    (20) expresion_logica -> expresion . IGUAL expresion
+    (21) expresion_logica -> expresion . DIFERENTE expresion
+    (22) expresion_logica -> expresion . MAYORIGUAL expresion
+    (23) expresion_logica -> expresion . MENORIGUAL expresion
+    (30) expresion -> expresion . SUMA expresion
+    (31) expresion -> expresion . RESTA expresion
+    (32) expresion -> expresion . MULTI expresion
+    (33) expresion -> expresion . DIV expresion
+
+    RPAREN          shift and go to state 52
+    MENOR           shift and go to state 22
+    MAYOR           shift and go to state 23
+    IGUAL           shift and go to state 24
+    DIFERENTE       shift and go to state 25
+    MAYORIGUAL      shift and go to state 26
+    MENORIGUAL      shift and go to state 27
+    SUMA            shift and go to state 28
+    RESTA           shift and go to state 29
+    MULTI           shift and go to state 30
+    DIV             shift and go to state 31
+
+
+state 34
+
+    (11) while_instr -> WHILE LPARENC expresion_logica . RPARENC LPARENC statement RPARENC
+
+    RPARENC         shift and go to state 53
+
+
+state 35
+
+    (12) asignacion_instr -> PUT ID ASSIGN expresion . PUNTOCOMA
+    (30) expresion -> expresion . SUMA expresion
+    (31) expresion -> expresion . RESTA expresion
+    (32) expresion -> expresion . MULTI expresion
+    (33) expresion -> expresion . DIV expresion
+
+    PUNTOCOMA       shift and go to state 54
+    SUMA            shift and go to state 28
+    RESTA           shift and go to state 29
+    MULTI           shift and go to state 30
+    DIV             shift and go to state 31
+
+
+state 36
+
+    (17) expresion -> LPAREN . expresion RPAREN
+    (13) expresion -> . ENTERO
+    (14) expresion -> . DECIMAL
+    (15) expresion -> . CADENA
+    (16) expresion -> . ID
+    (17) expresion -> . LPAREN expresion RPAREN
+    (30) expresion -> . expresion SUMA expresion
+    (31) expresion -> . expresion RESTA expresion
+    (32) expresion -> . expresion MULTI expresion
+    (33) expresion -> . expresion DIV expresion
+
+    ENTERO          shift and go to state 15
+    DECIMAL         shift and go to state 16
+    CADENA          shift and go to state 17
+    ID              shift and go to state 18
+    LPAREN          shift and go to state 36
+
+    expresion                      shift and go to state 55
+
+state 37
+
+    (7) if_instr -> IF expresion_logica RPAREN statement . RPAREN
+
+    RPAREN          shift and go to state 56
+
+
+state 38
+
+    (8) statement -> if_instr .
+
+    RPAREN          reduce using rule 8 (statement -> if_instr .)
+    RPARENC         reduce using rule 8 (statement -> if_instr .)
+
+
+state 39
+
+    (9) statement -> expresion .
+    (30) expresion -> expresion . SUMA expresion
+    (31) expresion -> expresion . RESTA expresion
+    (32) expresion -> expresion . MULTI expresion
+    (33) expresion -> expresion . DIV expresion
+
+    RPAREN          reduce using rule 9 (statement -> expresion .)
+    RPARENC         reduce using rule 9 (statement -> expresion .)
+    SUMA            shift and go to state 28
+    RESTA           shift and go to state 29
+    MULTI           shift and go to state 30
+    DIV             shift and go to state 31
+
+
+state 40
+
+    (10) statement -> while_instr .
+
+    RPAREN          reduce using rule 10 (statement -> while_instr .)
+    RPARENC         reduce using rule 10 (statement -> while_instr .)
+
+
+state 41
+
+    (18) expresion_logica -> expresion MENOR expresion .
+    (30) expresion -> expresion . SUMA expresion
+    (31) expresion -> expresion . RESTA expresion
+    (32) expresion -> expresion . MULTI expresion
+    (33) expresion -> expresion . DIV expresion
+
+    RPAREN          reduce using rule 18 (expresion_logica -> expresion MENOR expresion .)
+    RPARENC         reduce using rule 18 (expresion_logica -> expresion MENOR expresion .)
+    SUMA            shift and go to state 28
+    RESTA           shift and go to state 29
+    MULTI           shift and go to state 30
+    DIV             shift and go to state 31
+
+
+state 42
+
+    (19) expresion_logica -> expresion MAYOR expresion .
+    (30) expresion -> expresion . SUMA expresion
+    (31) expresion -> expresion . RESTA expresion
+    (32) expresion -> expresion . MULTI expresion
+    (33) expresion -> expresion . DIV expresion
+
+    RPAREN          reduce using rule 19 (expresion_logica -> expresion MAYOR expresion .)
+    RPARENC         reduce using rule 19 (expresion_logica -> expresion MAYOR expresion .)
+    SUMA            shift and go to state 28
+    RESTA           shift and go to state 29
+    MULTI           shift and go to state 30
+    DIV             shift and go to state 31
+
+
+state 43
+
+    (20) expresion_logica -> expresion IGUAL expresion .
+    (30) expresion -> expresion . SUMA expresion
+    (31) expresion -> expresion . RESTA expresion
+    (32) expresion -> expresion . MULTI expresion
+    (33) expresion -> expresion . DIV expresion
+
+    RPAREN          reduce using rule 20 (expresion_logica -> expresion IGUAL expresion .)
+    RPARENC         reduce using rule 20 (expresion_logica -> expresion IGUAL expresion .)
+    SUMA            shift and go to state 28
+    RESTA           shift and go to state 29
+    MULTI           shift and go to state 30
+    DIV             shift and go to state 31
+
+
+state 44
+
+    (21) expresion_logica -> expresion DIFERENTE expresion .
+    (30) expresion -> expresion . SUMA expresion
+    (31) expresion -> expresion . RESTA expresion
+    (32) expresion -> expresion . MULTI expresion
+    (33) expresion -> expresion . DIV expresion
+
+    RPAREN          reduce using rule 21 (expresion_logica -> expresion DIFERENTE expresion .)
+    RPARENC         reduce using rule 21 (expresion_logica -> expresion DIFERENTE expresion .)
+    SUMA            shift and go to state 28
+    RESTA           shift and go to state 29
+    MULTI           shift and go to state 30
+    DIV             shift and go to state 31
+
+
+state 45
+
+    (22) expresion_logica -> expresion MAYORIGUAL expresion .
+    (30) expresion -> expresion . SUMA expresion
+    (31) expresion -> expresion . RESTA expresion
+    (32) expresion -> expresion . MULTI expresion
+    (33) expresion -> expresion . DIV expresion
+
+    RPAREN          reduce using rule 22 (expresion_logica -> expresion MAYORIGUAL expresion .)
+    RPARENC         reduce using rule 22 (expresion_logica -> expresion MAYORIGUAL expresion .)
+    SUMA            shift and go to state 28
+    RESTA           shift and go to state 29
+    MULTI           shift and go to state 30
+    DIV             shift and go to state 31
+
+
+state 46
+
+    (23) expresion_logica -> expresion MENORIGUAL expresion .
+    (30) expresion -> expresion . SUMA expresion
+    (31) expresion -> expresion . RESTA expresion
+    (32) expresion -> expresion . MULTI expresion
+    (33) expresion -> expresion . DIV expresion
+
+    RPAREN          reduce using rule 23 (expresion_logica -> expresion MENORIGUAL expresion .)
+    RPARENC         reduce using rule 23 (expresion_logica -> expresion MENORIGUAL expresion .)
+    SUMA            shift and go to state 28
+    RESTA           shift and go to state 29
+    MULTI           shift and go to state 30
+    DIV             shift and go to state 31
+
+
+state 47
+
+    (30) expresion -> expresion SUMA expresion .
+    (30) expresion -> expresion . SUMA expresion
+    (31) expresion -> expresion . RESTA expresion
+    (32) expresion -> expresion . MULTI expresion
+    (33) expresion -> expresion . DIV expresion
+
+    MENOR           reduce using rule 30 (expresion -> expresion SUMA expresion .)
+    MAYOR           reduce using rule 30 (expresion -> expresion SUMA expresion .)
+    IGUAL           reduce using rule 30 (expresion -> expresion SUMA expresion .)
+    DIFERENTE       reduce using rule 30 (expresion -> expresion SUMA expresion .)
+    MAYORIGUAL      reduce using rule 30 (expresion -> expresion SUMA expresion .)
+    MENORIGUAL      reduce using rule 30 (expresion -> expresion SUMA expresion .)
+    SUMA            reduce using rule 30 (expresion -> expresion SUMA expresion .)
+    RESTA           reduce using rule 30 (expresion -> expresion SUMA expresion .)
+    RPAREN          reduce using rule 30 (expresion -> expresion SUMA expresion .)
+    PUNTOCOMA       reduce using rule 30 (expresion -> expresion SUMA expresion .)
+    RPARENC         reduce using rule 30 (expresion -> expresion SUMA expresion .)
+    MULTI           shift and go to state 30
+    DIV             shift and go to state 31
+
+  ! MULTI           [ reduce using rule 30 (expresion -> expresion SUMA expresion .) ]
+  ! DIV             [ reduce using rule 30 (expresion -> expresion SUMA expresion .) ]
+  ! SUMA            [ shift and go to state 28 ]
+  ! RESTA           [ shift and go to state 29 ]
+
+
+state 48
+
+    (31) expresion -> expresion RESTA expresion .
+    (30) expresion -> expresion . SUMA expresion
+    (31) expresion -> expresion . RESTA expresion
+    (32) expresion -> expresion . MULTI expresion
+    (33) expresion -> expresion . DIV expresion
+
+    MENOR           reduce using rule 31 (expresion -> expresion RESTA expresion .)
+    MAYOR           reduce using rule 31 (expresion -> expresion RESTA expresion .)
+    IGUAL           reduce using rule 31 (expresion -> expresion RESTA expresion .)
+    DIFERENTE       reduce using rule 31 (expresion -> expresion RESTA expresion .)
+    MAYORIGUAL      reduce using rule 31 (expresion -> expresion RESTA expresion .)
+    MENORIGUAL      reduce using rule 31 (expresion -> expresion RESTA expresion .)
+    SUMA            reduce using rule 31 (expresion -> expresion RESTA expresion .)
+    RESTA           reduce using rule 31 (expresion -> expresion RESTA expresion .)
+    RPAREN          reduce using rule 31 (expresion -> expresion RESTA expresion .)
+    PUNTOCOMA       reduce using rule 31 (expresion -> expresion RESTA expresion .)
+    RPARENC         reduce using rule 31 (expresion -> expresion RESTA expresion .)
+    MULTI           shift and go to state 30
+    DIV             shift and go to state 31
+
+  ! MULTI           [ reduce using rule 31 (expresion -> expresion RESTA expresion .) ]
+  ! DIV             [ reduce using rule 31 (expresion -> expresion RESTA expresion .) ]
+  ! SUMA            [ shift and go to state 28 ]
+  ! RESTA           [ shift and go to state 29 ]
+
+
+state 49
+
+    (32) expresion -> expresion MULTI expresion .
+    (30) expresion -> expresion . SUMA expresion
+    (31) expresion -> expresion . RESTA expresion
+    (32) expresion -> expresion . MULTI expresion
+    (33) expresion -> expresion . DIV expresion
+
+    MENOR           reduce using rule 32 (expresion -> expresion MULTI expresion .)
+    MAYOR           reduce using rule 32 (expresion -> expresion MULTI expresion .)
+    IGUAL           reduce using rule 32 (expresion -> expresion MULTI expresion .)
+    DIFERENTE       reduce using rule 32 (expresion -> expresion MULTI expresion .)
+    MAYORIGUAL      reduce using rule 32 (expresion -> expresion MULTI expresion .)
+    MENORIGUAL      reduce using rule 32 (expresion -> expresion MULTI expresion .)
+    SUMA            reduce using rule 32 (expresion -> expresion MULTI expresion .)
+    RESTA           reduce using rule 32 (expresion -> expresion MULTI expresion .)
+    MULTI           reduce using rule 32 (expresion -> expresion MULTI expresion .)
+    DIV             reduce using rule 32 (expresion -> expresion MULTI expresion .)
+    RPAREN          reduce using rule 32 (expresion -> expresion MULTI expresion .)
+    PUNTOCOMA       reduce using rule 32 (expresion -> expresion MULTI expresion .)
+    RPARENC         reduce using rule 32 (expresion -> expresion MULTI expresion .)
+
+  ! SUMA            [ shift and go to state 28 ]
+  ! RESTA           [ shift and go to state 29 ]
+  ! MULTI           [ shift and go to state 30 ]
+  ! DIV             [ shift and go to state 31 ]
+
+
+state 50
+
+    (33) expresion -> expresion DIV expresion .
+    (30) expresion -> expresion . SUMA expresion
+    (31) expresion -> expresion . RESTA expresion
+    (32) expresion -> expresion . MULTI expresion
+    (33) expresion -> expresion . DIV expresion
+
+    MENOR           reduce using rule 33 (expresion -> expresion DIV expresion .)
+    MAYOR           reduce using rule 33 (expresion -> expresion DIV expresion .)
+    IGUAL           reduce using rule 33 (expresion -> expresion DIV expresion .)
+    DIFERENTE       reduce using rule 33 (expresion -> expresion DIV expresion .)
+    MAYORIGUAL      reduce using rule 33 (expresion -> expresion DIV expresion .)
+    MENORIGUAL      reduce using rule 33 (expresion -> expresion DIV expresion .)
+    SUMA            reduce using rule 33 (expresion -> expresion DIV expresion .)
+    RESTA           reduce using rule 33 (expresion -> expresion DIV expresion .)
+    MULTI           reduce using rule 33 (expresion -> expresion DIV expresion .)
+    DIV             reduce using rule 33 (expresion -> expresion DIV expresion .)
+    RPAREN          reduce using rule 33 (expresion -> expresion DIV expresion .)
+    PUNTOCOMA       reduce using rule 33 (expresion -> expresion DIV expresion .)
+    RPARENC         reduce using rule 33 (expresion -> expresion DIV expresion .)
+
+  ! SUMA            [ shift and go to state 28 ]
+  ! RESTA           [ shift and go to state 29 ]
+  ! MULTI           [ shift and go to state 30 ]
+  ! DIV             [ shift and go to state 31 ]
+
+
+state 51
+
+    (24) expresion_logica -> LPAREN expresion_logica RPAREN . MENOR LPAREN expresion_logica RPAREN
+    (25) expresion_logica -> LPAREN expresion_logica RPAREN . MAYOR LPAREN expresion_logica RPAREN
+    (26) expresion_logica -> LPAREN expresion_logica RPAREN . IGUAL LPAREN expresion_logica RPAREN
+    (27) expresion_logica -> LPAREN expresion_logica RPAREN . DIFERENTE LPAREN expresion_logica RPAREN
+    (28) expresion_logica -> LPAREN expresion_logica RPAREN . MAYORIGUAL LPAREN expresion_logica RPAREN
+    (29) expresion_logica -> LPAREN expresion_logica RPAREN . MENORIGUAL LPAREN expresion_logica RPAREN
+
+    MENOR           shift and go to state 57
+    MAYOR           shift and go to state 58
+    IGUAL           shift and go to state 59
+    DIFERENTE       shift and go to state 60
+    MAYORIGUAL      shift and go to state 61
+    MENORIGUAL      shift and go to state 62
+
+
+state 52
+
+    (17) expresion -> LPAREN expresion RPAREN .
+
+    MENOR           reduce using rule 17 (expresion -> LPAREN expresion RPAREN .)
+    MAYOR           reduce using rule 17 (expresion -> LPAREN expresion RPAREN .)
+    IGUAL           reduce using rule 17 (expresion -> LPAREN expresion RPAREN .)
+    DIFERENTE       reduce using rule 17 (expresion -> LPAREN expresion RPAREN .)
+    MAYORIGUAL      reduce using rule 17 (expresion -> LPAREN expresion RPAREN .)
+    MENORIGUAL      reduce using rule 17 (expresion -> LPAREN expresion RPAREN .)
+    SUMA            reduce using rule 17 (expresion -> LPAREN expresion RPAREN .)
+    RESTA           reduce using rule 17 (expresion -> LPAREN expresion RPAREN .)
+    MULTI           reduce using rule 17 (expresion -> LPAREN expresion RPAREN .)
+    DIV             reduce using rule 17 (expresion -> LPAREN expresion RPAREN .)
+    RPAREN          reduce using rule 17 (expresion -> LPAREN expresion RPAREN .)
+    PUNTOCOMA       reduce using rule 17 (expresion -> LPAREN expresion RPAREN .)
+    RPARENC         reduce using rule 17 (expresion -> LPAREN expresion RPAREN .)
+
+
+state 53
+
+    (11) while_instr -> WHILE LPARENC expresion_logica RPARENC . LPARENC statement RPARENC
+
+    LPARENC         shift and go to state 63
+
+
+state 54
+
+    (12) asignacion_instr -> PUT ID ASSIGN expresion PUNTOCOMA .
+
+    PUT             reduce using rule 12 (asignacion_instr -> PUT ID ASSIGN expresion PUNTOCOMA .)
+    IF              reduce using rule 12 (asignacion_instr -> PUT ID ASSIGN expresion PUNTOCOMA .)
+    WHILE           reduce using rule 12 (asignacion_instr -> PUT ID ASSIGN expresion PUNTOCOMA .)
+    $end            reduce using rule 12 (asignacion_instr -> PUT ID ASSIGN expresion PUNTOCOMA .)
+
+
+state 55
+
+    (17) expresion -> LPAREN expresion . RPAREN
+    (30) expresion -> expresion . SUMA expresion
+    (31) expresion -> expresion . RESTA expresion
+    (32) expresion -> expresion . MULTI expresion
+    (33) expresion -> expresion . DIV expresion
+
+    RPAREN          shift and go to state 52
+    SUMA            shift and go to state 28
+    RESTA           shift and go to state 29
+    MULTI           shift and go to state 30
+    DIV             shift and go to state 31
+
+
+state 56
+
+    (7) if_instr -> IF expresion_logica RPAREN statement RPAREN .
+
+    PUT             reduce using rule 7 (if_instr -> IF expresion_logica RPAREN statement RPAREN .)
+    IF              reduce using rule 7 (if_instr -> IF expresion_logica RPAREN statement RPAREN .)
+    WHILE           reduce using rule 7 (if_instr -> IF expresion_logica RPAREN statement RPAREN .)
+    $end            reduce using rule 7 (if_instr -> IF expresion_logica RPAREN statement RPAREN .)
+    RPAREN          reduce using rule 7 (if_instr -> IF expresion_logica RPAREN statement RPAREN .)
+    RPARENC         reduce using rule 7 (if_instr -> IF expresion_logica RPAREN statement RPAREN .)
+
+
+state 57
+
+    (24) expresion_logica -> LPAREN expresion_logica RPAREN MENOR . LPAREN expresion_logica RPAREN
+
+    LPAREN          shift and go to state 64
+
+
+state 58
+
+    (25) expresion_logica -> LPAREN expresion_logica RPAREN MAYOR . LPAREN expresion_logica RPAREN
+
+    LPAREN          shift and go to state 65
+
+
+state 59
+
+    (26) expresion_logica -> LPAREN expresion_logica RPAREN IGUAL . LPAREN expresion_logica RPAREN
+
+    LPAREN          shift and go to state 66
+
+
+state 60
+
+    (27) expresion_logica -> LPAREN expresion_logica RPAREN DIFERENTE . LPAREN expresion_logica RPAREN
+
+    LPAREN          shift and go to state 67
+
+
+state 61
+
+    (28) expresion_logica -> LPAREN expresion_logica RPAREN MAYORIGUAL . LPAREN expresion_logica RPAREN
+
+    LPAREN          shift and go to state 68
+
+
+state 62
+
+    (29) expresion_logica -> LPAREN expresion_logica RPAREN MENORIGUAL . LPAREN expresion_logica RPAREN
+
+    LPAREN          shift and go to state 69
+
+
+state 63
+
+    (11) while_instr -> WHILE LPARENC expresion_logica RPARENC LPARENC . statement RPARENC
+    (8) statement -> . if_instr
+    (9) statement -> . expresion
+    (10) statement -> . while_instr
+    (7) if_instr -> . IF expresion_logica RPAREN statement RPAREN
+    (13) expresion -> . ENTERO
+    (14) expresion -> . DECIMAL
+    (15) expresion -> . CADENA
+    (16) expresion -> . ID
+    (17) expresion -> . LPAREN expresion RPAREN
+    (30) expresion -> . expresion SUMA expresion
+    (31) expresion -> . expresion RESTA expresion
+    (32) expresion -> . expresion MULTI expresion
+    (33) expresion -> . expresion DIV expresion
+    (11) while_instr -> . WHILE LPARENC expresion_logica RPARENC LPARENC statement RPARENC
+
+    IF              shift and go to state 8
+    ENTERO          shift and go to state 15
+    DECIMAL         shift and go to state 16
+    CADENA          shift and go to state 17
+    ID              shift and go to state 18
+    LPAREN          shift and go to state 36
+    WHILE           shift and go to state 9
+
+    statement                      shift and go to state 70
+    if_instr                       shift and go to state 38
+    expresion                      shift and go to state 39
+    while_instr                    shift and go to state 40
+
+state 64
+
+    (24) expresion_logica -> LPAREN expresion_logica RPAREN MENOR LPAREN . expresion_logica RPAREN
+    (18) expresion_logica -> . expresion MENOR expresion
+    (19) expresion_logica -> . expresion MAYOR expresion
+    (20) expresion_logica -> . expresion IGUAL expresion
+    (21) expresion_logica -> . expresion DIFERENTE expresion
+    (22) expresion_logica -> . expresion MAYORIGUAL expresion
+    (23) expresion_logica -> . expresion MENORIGUAL expresion
+    (24) expresion_logica -> . LPAREN expresion_logica RPAREN MENOR LPAREN expresion_logica RPAREN
+    (25) expresion_logica -> . LPAREN expresion_logica RPAREN MAYOR LPAREN expresion_logica RPAREN
+    (26) expresion_logica -> . LPAREN expresion_logica RPAREN IGUAL LPAREN expresion_logica RPAREN
+    (27) expresion_logica -> . LPAREN expresion_logica RPAREN DIFERENTE LPAREN expresion_logica RPAREN
+    (28) expresion_logica -> . LPAREN expresion_logica RPAREN MAYORIGUAL LPAREN expresion_logica RPAREN
+    (29) expresion_logica -> . LPAREN expresion_logica RPAREN MENORIGUAL LPAREN expresion_logica RPAREN
+    (13) expresion -> . ENTERO
+    (14) expresion -> . DECIMAL
+    (15) expresion -> . CADENA
+    (16) expresion -> . ID
+    (17) expresion -> . LPAREN expresion RPAREN
+    (30) expresion -> . expresion SUMA expresion
+    (31) expresion -> . expresion RESTA expresion
+    (32) expresion -> . expresion MULTI expresion
+    (33) expresion -> . expresion DIV expresion
+
+    LPAREN          shift and go to state 14
+    ENTERO          shift and go to state 15
+    DECIMAL         shift and go to state 16
+    CADENA          shift and go to state 17
+    ID              shift and go to state 18
+
+    expresion_logica               shift and go to state 71
+    expresion                      shift and go to state 13
+
+state 65
+
+    (25) expresion_logica -> LPAREN expresion_logica RPAREN MAYOR LPAREN . expresion_logica RPAREN
+    (18) expresion_logica -> . expresion MENOR expresion
+    (19) expresion_logica -> . expresion MAYOR expresion
+    (20) expresion_logica -> . expresion IGUAL expresion
+    (21) expresion_logica -> . expresion DIFERENTE expresion
+    (22) expresion_logica -> . expresion MAYORIGUAL expresion
+    (23) expresion_logica -> . expresion MENORIGUAL expresion
+    (24) expresion_logica -> . LPAREN expresion_logica RPAREN MENOR LPAREN expresion_logica RPAREN
+    (25) expresion_logica -> . LPAREN expresion_logica RPAREN MAYOR LPAREN expresion_logica RPAREN
+    (26) expresion_logica -> . LPAREN expresion_logica RPAREN IGUAL LPAREN expresion_logica RPAREN
+    (27) expresion_logica -> . LPAREN expresion_logica RPAREN DIFERENTE LPAREN expresion_logica RPAREN
+    (28) expresion_logica -> . LPAREN expresion_logica RPAREN MAYORIGUAL LPAREN expresion_logica RPAREN
+    (29) expresion_logica -> . LPAREN expresion_logica RPAREN MENORIGUAL LPAREN expresion_logica RPAREN
+    (13) expresion -> . ENTERO
+    (14) expresion -> . DECIMAL
+    (15) expresion -> . CADENA
+    (16) expresion -> . ID
+    (17) expresion -> . LPAREN expresion RPAREN
+    (30) expresion -> . expresion SUMA expresion
+    (31) expresion -> . expresion RESTA expresion
+    (32) expresion -> . expresion MULTI expresion
+    (33) expresion -> . expresion DIV expresion
+
+    LPAREN          shift and go to state 14
+    ENTERO          shift and go to state 15
+    DECIMAL         shift and go to state 16
+    CADENA          shift and go to state 17
+    ID              shift and go to state 18
+
+    expresion_logica               shift and go to state 72
+    expresion                      shift and go to state 13
+
+state 66
+
+    (26) expresion_logica -> LPAREN expresion_logica RPAREN IGUAL LPAREN . expresion_logica RPAREN
+    (18) expresion_logica -> . expresion MENOR expresion
+    (19) expresion_logica -> . expresion MAYOR expresion
+    (20) expresion_logica -> . expresion IGUAL expresion
+    (21) expresion_logica -> . expresion DIFERENTE expresion
+    (22) expresion_logica -> . expresion MAYORIGUAL expresion
+    (23) expresion_logica -> . expresion MENORIGUAL expresion
+    (24) expresion_logica -> . LPAREN expresion_logica RPAREN MENOR LPAREN expresion_logica RPAREN
+    (25) expresion_logica -> . LPAREN expresion_logica RPAREN MAYOR LPAREN expresion_logica RPAREN
+    (26) expresion_logica -> . LPAREN expresion_logica RPAREN IGUAL LPAREN expresion_logica RPAREN
+    (27) expresion_logica -> . LPAREN expresion_logica RPAREN DIFERENTE LPAREN expresion_logica RPAREN
+    (28) expresion_logica -> . LPAREN expresion_logica RPAREN MAYORIGUAL LPAREN expresion_logica RPAREN
+    (29) expresion_logica -> . LPAREN expresion_logica RPAREN MENORIGUAL LPAREN expresion_logica RPAREN
+    (13) expresion -> . ENTERO
+    (14) expresion -> . DECIMAL
+    (15) expresion -> . CADENA
+    (16) expresion -> . ID
+    (17) expresion -> . LPAREN expresion RPAREN
+    (30) expresion -> . expresion SUMA expresion
+    (31) expresion -> . expresion RESTA expresion
+    (32) expresion -> . expresion MULTI expresion
+    (33) expresion -> . expresion DIV expresion
+
+    LPAREN          shift and go to state 14
+    ENTERO          shift and go to state 15
+    DECIMAL         shift and go to state 16
+    CADENA          shift and go to state 17
+    ID              shift and go to state 18
+
+    expresion_logica               shift and go to state 73
+    expresion                      shift and go to state 13
+
+state 67
+
+    (27) expresion_logica -> LPAREN expresion_logica RPAREN DIFERENTE LPAREN . expresion_logica RPAREN
+    (18) expresion_logica -> . expresion MENOR expresion
+    (19) expresion_logica -> . expresion MAYOR expresion
+    (20) expresion_logica -> . expresion IGUAL expresion
+    (21) expresion_logica -> . expresion DIFERENTE expresion
+    (22) expresion_logica -> . expresion MAYORIGUAL expresion
+    (23) expresion_logica -> . expresion MENORIGUAL expresion
+    (24) expresion_logica -> . LPAREN expresion_logica RPAREN MENOR LPAREN expresion_logica RPAREN
+    (25) expresion_logica -> . LPAREN expresion_logica RPAREN MAYOR LPAREN expresion_logica RPAREN
+    (26) expresion_logica -> . LPAREN expresion_logica RPAREN IGUAL LPAREN expresion_logica RPAREN
+    (27) expresion_logica -> . LPAREN expresion_logica RPAREN DIFERENTE LPAREN expresion_logica RPAREN
+    (28) expresion_logica -> . LPAREN expresion_logica RPAREN MAYORIGUAL LPAREN expresion_logica RPAREN
+    (29) expresion_logica -> . LPAREN expresion_logica RPAREN MENORIGUAL LPAREN expresion_logica RPAREN
+    (13) expresion -> . ENTERO
+    (14) expresion -> . DECIMAL
+    (15) expresion -> . CADENA
+    (16) expresion -> . ID
+    (17) expresion -> . LPAREN expresion RPAREN
+    (30) expresion -> . expresion SUMA expresion
+    (31) expresion -> . expresion RESTA expresion
+    (32) expresion -> . expresion MULTI expresion
+    (33) expresion -> . expresion DIV expresion
+
+    LPAREN          shift and go to state 14
+    ENTERO          shift and go to state 15
+    DECIMAL         shift and go to state 16
+    CADENA          shift and go to state 17
+    ID              shift and go to state 18
+
+    expresion_logica               shift and go to state 74
+    expresion                      shift and go to state 13
+
+state 68
+
+    (28) expresion_logica -> LPAREN expresion_logica RPAREN MAYORIGUAL LPAREN . expresion_logica RPAREN
+    (18) expresion_logica -> . expresion MENOR expresion
+    (19) expresion_logica -> . expresion MAYOR expresion
+    (20) expresion_logica -> . expresion IGUAL expresion
+    (21) expresion_logica -> . expresion DIFERENTE expresion
+    (22) expresion_logica -> . expresion MAYORIGUAL expresion
+    (23) expresion_logica -> . expresion MENORIGUAL expresion
+    (24) expresion_logica -> . LPAREN expresion_logica RPAREN MENOR LPAREN expresion_logica RPAREN
+    (25) expresion_logica -> . LPAREN expresion_logica RPAREN MAYOR LPAREN expresion_logica RPAREN
+    (26) expresion_logica -> . LPAREN expresion_logica RPAREN IGUAL LPAREN expresion_logica RPAREN
+    (27) expresion_logica -> . LPAREN expresion_logica RPAREN DIFERENTE LPAREN expresion_logica RPAREN
+    (28) expresion_logica -> . LPAREN expresion_logica RPAREN MAYORIGUAL LPAREN expresion_logica RPAREN
+    (29) expresion_logica -> . LPAREN expresion_logica RPAREN MENORIGUAL LPAREN expresion_logica RPAREN
+    (13) expresion -> . ENTERO
+    (14) expresion -> . DECIMAL
+    (15) expresion -> . CADENA
+    (16) expresion -> . ID
+    (17) expresion -> . LPAREN expresion RPAREN
+    (30) expresion -> . expresion SUMA expresion
+    (31) expresion -> . expresion RESTA expresion
+    (32) expresion -> . expresion MULTI expresion
+    (33) expresion -> . expresion DIV expresion
+
+    LPAREN          shift and go to state 14
+    ENTERO          shift and go to state 15
+    DECIMAL         shift and go to state 16
+    CADENA          shift and go to state 17
+    ID              shift and go to state 18
+
+    expresion_logica               shift and go to state 75
+    expresion                      shift and go to state 13
+
+state 69
+
+    (29) expresion_logica -> LPAREN expresion_logica RPAREN MENORIGUAL LPAREN . expresion_logica RPAREN
+    (18) expresion_logica -> . expresion MENOR expresion
+    (19) expresion_logica -> . expresion MAYOR expresion
+    (20) expresion_logica -> . expresion IGUAL expresion
+    (21) expresion_logica -> . expresion DIFERENTE expresion
+    (22) expresion_logica -> . expresion MAYORIGUAL expresion
+    (23) expresion_logica -> . expresion MENORIGUAL expresion
+    (24) expresion_logica -> . LPAREN expresion_logica RPAREN MENOR LPAREN expresion_logica RPAREN
+    (25) expresion_logica -> . LPAREN expresion_logica RPAREN MAYOR LPAREN expresion_logica RPAREN
+    (26) expresion_logica -> . LPAREN expresion_logica RPAREN IGUAL LPAREN expresion_logica RPAREN
+    (27) expresion_logica -> . LPAREN expresion_logica RPAREN DIFERENTE LPAREN expresion_logica RPAREN
+    (28) expresion_logica -> . LPAREN expresion_logica RPAREN MAYORIGUAL LPAREN expresion_logica RPAREN
+    (29) expresion_logica -> . LPAREN expresion_logica RPAREN MENORIGUAL LPAREN expresion_logica RPAREN
+    (13) expresion -> . ENTERO
+    (14) expresion -> . DECIMAL
+    (15) expresion -> . CADENA
+    (16) expresion -> . ID
+    (17) expresion -> . LPAREN expresion RPAREN
+    (30) expresion -> . expresion SUMA expresion
+    (31) expresion -> . expresion RESTA expresion
+    (32) expresion -> . expresion MULTI expresion
+    (33) expresion -> . expresion DIV expresion
+
+    LPAREN          shift and go to state 14
+    ENTERO          shift and go to state 15
+    DECIMAL         shift and go to state 16
+    CADENA          shift and go to state 17
+    ID              shift and go to state 18
+
+    expresion_logica               shift and go to state 76
+    expresion                      shift and go to state 13
+
+state 70
+
+    (11) while_instr -> WHILE LPARENC expresion_logica RPARENC LPARENC statement . RPARENC
+
+    RPARENC         shift and go to state 77
+
+
+state 71
+
+    (24) expresion_logica -> LPAREN expresion_logica RPAREN MENOR LPAREN expresion_logica . RPAREN
+
+    RPAREN          shift and go to state 78
+
+
+state 72
+
+    (25) expresion_logica -> LPAREN expresion_logica RPAREN MAYOR LPAREN expresion_logica . RPAREN
+
+    RPAREN          shift and go to state 79
+
+
+state 73
+
+    (26) expresion_logica -> LPAREN expresion_logica RPAREN IGUAL LPAREN expresion_logica . RPAREN
+
+    RPAREN          shift and go to state 80
+
+
+state 74
+
+    (27) expresion_logica -> LPAREN expresion_logica RPAREN DIFERENTE LPAREN expresion_logica . RPAREN
+
+    RPAREN          shift and go to state 81
+
+
+state 75
+
+    (28) expresion_logica -> LPAREN expresion_logica RPAREN MAYORIGUAL LPAREN expresion_logica . RPAREN
+
+    RPAREN          shift and go to state 82
+
+
+state 76
+
+    (29) expresion_logica -> LPAREN expresion_logica RPAREN MENORIGUAL LPAREN expresion_logica . RPAREN
+
+    RPAREN          shift and go to state 83
+
+
+state 77
+
+    (11) while_instr -> WHILE LPARENC expresion_logica RPARENC LPARENC statement RPARENC .
+
+    PUT             reduce using rule 11 (while_instr -> WHILE LPARENC expresion_logica RPARENC LPARENC statement RPARENC .)
+    IF              reduce using rule 11 (while_instr -> WHILE LPARENC expresion_logica RPARENC LPARENC statement RPARENC .)
+    WHILE           reduce using rule 11 (while_instr -> WHILE LPARENC expresion_logica RPARENC LPARENC statement RPARENC .)
+    $end            reduce using rule 11 (while_instr -> WHILE LPARENC expresion_logica RPARENC LPARENC statement RPARENC .)
+    RPAREN          reduce using rule 11 (while_instr -> WHILE LPARENC expresion_logica RPARENC LPARENC statement RPARENC .)
+    RPARENC         reduce using rule 11 (while_instr -> WHILE LPARENC expresion_logica RPARENC LPARENC statement RPARENC .)
+
+
+state 78
+
+    (24) expresion_logica -> LPAREN expresion_logica RPAREN MENOR LPAREN expresion_logica RPAREN .
+
+    RPAREN          reduce using rule 24 (expresion_logica -> LPAREN expresion_logica RPAREN MENOR LPAREN expresion_logica RPAREN .)
+    RPARENC         reduce using rule 24 (expresion_logica -> LPAREN expresion_logica RPAREN MENOR LPAREN expresion_logica RPAREN .)
+
+
+state 79
+
+    (25) expresion_logica -> LPAREN expresion_logica RPAREN MAYOR LPAREN expresion_logica RPAREN .
+
+    RPAREN          reduce using rule 25 (expresion_logica -> LPAREN expresion_logica RPAREN MAYOR LPAREN expresion_logica RPAREN .)
+    RPARENC         reduce using rule 25 (expresion_logica -> LPAREN expresion_logica RPAREN MAYOR LPAREN expresion_logica RPAREN .)
+
+
+state 80
+
+    (26) expresion_logica -> LPAREN expresion_logica RPAREN IGUAL LPAREN expresion_logica RPAREN .
+
+    RPAREN          reduce using rule 26 (expresion_logica -> LPAREN expresion_logica RPAREN IGUAL LPAREN expresion_logica RPAREN .)
+    RPARENC         reduce using rule 26 (expresion_logica -> LPAREN expresion_logica RPAREN IGUAL LPAREN expresion_logica RPAREN .)
+
+
+state 81
+
+    (27) expresion_logica -> LPAREN expresion_logica RPAREN DIFERENTE LPAREN expresion_logica RPAREN .
+
+    RPAREN          reduce using rule 27 (expresion_logica -> LPAREN expresion_logica RPAREN DIFERENTE LPAREN expresion_logica RPAREN .)
+    RPARENC         reduce using rule 27 (expresion_logica -> LPAREN expresion_logica RPAREN DIFERENTE LPAREN expresion_logica RPAREN .)
+
+
+state 82
+
+    (28) expresion_logica -> LPAREN expresion_logica RPAREN MAYORIGUAL LPAREN expresion_logica RPAREN .
+
+    RPAREN          reduce using rule 28 (expresion_logica -> LPAREN expresion_logica RPAREN MAYORIGUAL LPAREN expresion_logica RPAREN .)
+    RPARENC         reduce using rule 28 (expresion_logica -> LPAREN expresion_logica RPAREN MAYORIGUAL LPAREN expresion_logica RPAREN .)
+
+
+state 83
+
+    (29) expresion_logica -> LPAREN expresion_logica RPAREN MENORIGUAL LPAREN expresion_logica RPAREN .
+
+    RPAREN          reduce using rule 29 (expresion_logica -> LPAREN expresion_logica RPAREN MENORIGUAL LPAREN expresion_logica RPAREN .)
+    RPARENC         reduce using rule 29 (expresion_logica -> LPAREN expresion_logica RPAREN MENORIGUAL LPAREN expresion_logica RPAREN .)
+

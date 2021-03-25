@@ -1,6 +1,5 @@
 from aLexico import tokens,analizador
 from sys import stdin
-import ply.yacc as yacc
 
 
 precedence = (
@@ -17,17 +16,22 @@ precedence = (
 nombres = {}
 
 def p_init(p):
-    'init: instrucciones'
+    'init : instrucciones'
     p[0] = p[1]
 
 def p_instrucciones_lista(p):
-    'instrucciones : instruccion'
-    p[0] = [p[1]]
+    'instrucciones : instrucciones instruccion'
+    p[1].append(p[2])
+    p[0] = p[1]
 
+def p_instrucciones_instruccion(p):
+    'instrucciones :  instruccion'
+    p[0] = [p[1]]
+###Linea 30###
+    
 def p_instruccion(p):
     '''
-    instrucción: imprimit_instr
-                | asignacion_instr
+    instruccion : asignacion_instr
                 | if_instr
                 | while_instr
     '''
@@ -35,15 +39,14 @@ def p_instruccion(p):
 
 
 def p_if(p):
-    '''if instr : IF expresion_logica RPAREN statement RPAREN'''
+    '''if_instr : IF expresion_logica RPAREN statement RPAREN'''
 
     print(p[3])
     if(p[3]):
         p[0] = p[6]
 
 def p_statement(p):
-    '''statement : imprimir_instr
-                    | if_instr
+    '''statement : if_instr
                     | expresion
                     | while_instr'''
     p[0] = p[1]
@@ -51,7 +54,7 @@ def p_statement(p):
 
 def p_while(p):
     ''' while_instr : WHILE LPARENC expresion_logica RPARENC LPARENC statement RPARENC'''
-    while(p[3]):
+    while(p[3]): ###Linea 60###
         p[0] = p[6]
 
 def p_put(p):
@@ -61,8 +64,7 @@ def p_put(p):
 def p_put_tipo(p):
         '''expresion : ENTERO
                     | DECIMAL
-                    | CADENA
-    '''
+                    | CADENA    '''
         p[0] = p[1]
 
 def p_expresion_id(p):
@@ -74,40 +76,35 @@ def p_expresion_group(p):
         p[0] = p[2]
 
 def p_expresion_logica(p):
-        ''' expresion_logica : expresion MENOR expresion
-                            |expresion MAYOR expresion
-                            |expresion IGUAL expresion
-                            |expresion DIFERENTE expresion
-                            |expresion MAYORIGUAL expresion
-                            |expresion MENORIGUAL expresion
-        '''
+        '''expresion_logica : expresion MENOR expresion
+                            | expresion MAYOR expresion
+                            | expresion IGUAL expresion
+                            | expresion DIFERENTE expresion
+                            | expresion MAYORIGUAL expresion
+                            | expresion MENORIGUAL expresion '''
 
-        if p[2] == '<': p[0] = p[1] < p[3]
-        elif p[2] == '>': p[0] = p[1] > p[3]
-        elif p[2] == '==': p[0] = p[1] == p[3]
-        elif p[2] == '!=': p[0] = p[1] != p[3]
-        elif p[2] == '>=': p[0] = p[1] >= p[3]
-        elif p[2] == '<=': p[0] = p[1] <= p[3]
+        if p[2] == '<' : p[0] = p[1] < p[3]
+        elif p[2] == '>' : p[0] = p[1] > p[3]
+        elif p[2] == '==' : p[0] = p[1] == p[3]
+        elif p[2] == '!=' : p[0] = p[1] != p[3]
+        elif p[2] == '>=' : p[0] = p[1] >= p[3]
+        elif p[2] == '<=' : p[0] = p[1] <= p[3]
 
-def p_expresion_logica_group(p):
-        ''' expresion_logica : LPAREN expresion_logica RPAREN'''
-        p[0]=p[2]
 
 def p_expresion_logica_group(p):
         ''' expresion_logica : LPAREN expresion_logica RPAREN MENOR LPAREN expresion_logica RPAREN
-                                |LPAREN expresion_logica RPAREN MAYOR LPAREN expresion_logica RPAREN
-                                |LPAREN expresion_logica RPAREN IGUAL LPAREN expresion_logica RPAREN
-                                |LPAREN expresion_logica RPAREN DIFERENTE LPAREN expresion_logica RPAREN
-                                |LPAREN expresion_logica RPAREN MAYORIGUAL LPAREN expresion_logica RPAREN
-                                |LPAREN expresion_logica RPAREN MENORIGUAL LPAREN expresion_logica RPAREN
-        '''
+                            | LPAREN expresion_logica RPAREN MAYOR LPAREN expresion_logica RPAREN
+                            | LPAREN expresion_logica RPAREN IGUAL LPAREN expresion_logica RPAREN
+                            | LPAREN expresion_logica RPAREN DIFERENTE LPAREN expresion_logica RPAREN
+                            | LPAREN expresion_logica RPAREN MAYORIGUAL LPAREN expresion_logica RPAREN
+                            | LPAREN expresion_logica RPAREN MENORIGUAL LPAREN expresion_logica RPAREN'''
 
-        if p[4] == '<': p[0] = p[2] < p[5]
-        elif p[4] == '>': p[0] = p[2] > p[5]
-        elif p[4] == '==': p[0] = p[2] == p[5]
-        elif p[4] == '!=': p[0] = p[2] != p[5]
-        elif p[4] == '>=': p[0] = p[2] >= p[5]
-        elif p[4] == '<=': p[0] = p[2] <= p[5]
+        if p[4] == '<' : p[0] = p[2] < p[5]
+        elif p[4] == '>' : p[0] = p[2] > p[5]
+        elif p[4] == '==' : p[0] = p[2] == p[5]
+        elif p[4] == '!=' : p[0] = p[2] != p[5]
+        elif p[4] == '>=' : p[0] = p[2] >= p[5]
+        elif p[4] == '<=' : p[0] = p[2] <= p[5]
 
 def p_expresion_operaciones(p):
     
@@ -117,10 +114,10 @@ def p_expresion_operaciones(p):
                         | expresion DIV expresion
         '''
 
-        if p[2] == '+': p[0] = p[1] + p[3]
-        elif p[2] == '-': p[0] = p[1] - p[3]
-        elif p[2] == '*': p[0] = p[1] * p[3]
-        elif p[2] == '/': p[0] = p[1] / p[3]
+        if p[2] == '+' : p[0] = p[1] + p[3]
+        elif p[2] == '-' : p[0] = p[1] - p[3]
+        elif p[2] == '*' : p[0] = p[1] * p[3]
+        elif p[2] == '/' : p[0] = p[1] / p[3]
 
 
 def p_error(t):
@@ -133,7 +130,8 @@ def p_error(t):
 
     resultado_gramatica.append(resultado)
                                 
-                
+
+import ply.yacc as yacc
 parser = yacc.yacc()
 
 resultado_gramatica = []
