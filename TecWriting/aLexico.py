@@ -1,11 +1,11 @@
 import ply.lex as lex
 
 
-reservdas = {
+reservadas = {
 
-    'Def':'DEF','Put':'PUT','Add':'ADD','ContinueUp':'CONTINUEUP', 'ContinueDown':'CONTINUEDOWN'
+    'Def':'DEF','Put':'PUT','Add':'ADD','ContinueUp':'CONTINUEUP', 'ContinueDown':'CONTINUEDOWN',
     'ContinueRight':'CONTINUERIGHT', 'ContinueLeft':'CONTINUELEFT', 'Pos':'POS',
-    'PosX':'POSX': 'PosY':'POSY', 'UseColor':'USECOLOR', 'Down':'DOWN', 'Begin':'BEGIN',
+    'PosX':'POSX', 'PosY':'POSY', 'UseColor':'USECOLOR', 'Down':'DOWN', 'Begin':'BEGIN',
     'Speed':'SPEED', 'Run': 'RUN', 'Repeat': 'REPEAT', 'If':'IF', 'IfElse':'IFELSE',
     'Until':'UNTIL', 'While':'WHILE', 'Equal':'EQUAL', 'And':'AND', 'Or': 'OR',
     'Greater':'GREATER', 'Smaller':'SMALLER', 'Substr':'SUBSTR', 'Random':'RANDOM','Mult':'MULT',
@@ -16,7 +16,7 @@ reservdas = {
 
 tokens = [
         'COMA', 'PUNTOCOMA','IGUAL', 'LPAREN', 'RPAREN','LPARENC','RPARENC', #Símbolos exclusivos
-        'ID', 'NUMERO',
+        'ID', 'ENTERO','DECIMAL','CADENA',
         'DIFERENTE', 'MAYOR', 'MENOR', 'MAYORIGUAL', 'MENORIGUAL', 'SUMA','RESTA', 'MULTI', 'DIV', 'ASSIGN'
 ] + list(reservadas.values())
 
@@ -60,18 +60,18 @@ def t_ENTERO(t):
     r'\d+'
     try:
         t.value = int(t.value)
-        except ValueError:
-            print("Integer value too large %d", t.value)
-            t.value = 0
-        return t
+    except ValueError:
+        print("Integer value too large %d", t.value)
+        t.value = 0
+    return t
 
 def t_DECIMAL(t):
-        r'(\d*\.\d+)|(\d+\.\d*)'
-        try:
-            t.value = float(t.value)
-            expect ValueError:
-                print("Float value too large %d", t.value)
-            return t
+    r'(\d*\.\d+)|(\d+\.\d*)'
+    try:
+        t.value = float(t.value)
+    except ValueError:
+        print("Float value too large %d", t.value)
+    return t
 
 def t_error(t):
     print("Caracter ilegal: Error de sintaxis in line"+ str(t.lexer.lineno)+"'%s'" % t.value[0])       
