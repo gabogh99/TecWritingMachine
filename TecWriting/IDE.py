@@ -20,19 +20,22 @@ def Ventana2(data, title):
     canvas = Canvas(vt2)
     scroll_y = Scrollbar(vt2,orient="vertical", command=canvas.yview)
 
-    frame=Frame(canvas)
+    output_frame=Frame(canvas)
 
     i=0;
     for i in range(len(data)):
-        e = Label(frame, text=data[i])
+        e = Label(output_frame, text=data[i])
         e.grid(row=i, column=2)
 
-    canvas.create_window(0,0, anchor='nw', window = frame)
+    canvas.create_window(0,0, anchor='nw', window = output_frame)
     canvas.update_idletasks()
     
 
     canvas.pack(fill='both', expand=True, side='left')
     scroll_y.pack(fill='y', side='right')
+
+    output_text = Text(output_frame, width=60, height=40,selectbackground = "grey", selectforeground="black",undo = True, yscrollcommand = text_scroll.set)
+    output_text.pack()
     vt2.mainloop()
 
 
@@ -124,7 +127,7 @@ text_scroll = Scrollbar(my_frame)
 text_scroll.pack(side=RIGHT, fill=Y)
 
 
-my_text = Text(my_frame, width=97, height=25, font=("Helvetica", 16), selectbackground = "grey", selectforeground="black",undo = True, yscrollcommand = text_scroll.set)
+my_text = Text(my_frame, width=97, height=25,selectbackground = "grey", selectforeground="black",undo = True, yscrollcommand = text_scroll.set)
 my_text.pack()
 
 text_scroll.config(command = my_text.yview)
