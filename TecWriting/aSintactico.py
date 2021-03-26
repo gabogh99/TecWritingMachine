@@ -120,10 +120,10 @@ def p_expresion_operaciones(p):
         elif p[2] == '/' : p[0] = p[1] / p[3]
 
 
-def p_error(t):
+def p_error(p):
     global resultado_gramatica
 
-    if t:
+    if p:
         resultado = "Error  sintáctico de tipo [] en el valor {}".format(str(p.type), str(p.value))
     else:
         resultado = "Error sintáctico {}".format(p)
